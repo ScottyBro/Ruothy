@@ -20,7 +20,7 @@
   --grey-150: #eef3f6;
   --grey-200: #d9e2e8;
   --grey-300: #c3ced6;
-  --grey-500: #6b7a86;
+  --grey-500: #5f6e79;      /* AA-compliant on white & light-grey (>=4.5:1) */
   --grey-700: #38474f;
   --ink: #14232d;           /* body text */
 
@@ -85,9 +85,9 @@ p { margin: 0 0 1rem; }
 .eyebrow {
   font-family: var(--font-display);
   font-size: .8rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--lime-600); margin: 0 0 1rem;
+  color: var(--blue); margin: 0 0 1rem;   /* AA on light backgrounds (lime fails on white) */
 }
-.eyebrow--light { color: var(--lime); }
+.eyebrow--light { color: var(--lime); }   /* on dark/navy sections, where lime has strong contrast */
 .lede { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--grey-700); max-width: 60ch; }
 .center { text-align: center; }
 .center .lede { margin-inline: auto; }
@@ -539,6 +539,8 @@ p { margin: 0 0 1rem; }
 .footer__brand .brand__name b, .footer__brand .brand__name span { color: #fff; }
 .footer__brand p { margin-top: 1rem; font-size: .92rem; max-width: 34ch; }
 .site-footer h4 { color: #fff; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+/* Larger tap area for footer links on touch devices (>=24px height) */
+.footer__col ul a, .footer__contact a, .footer__bottom-links a { display: inline-block; padding-block: 4px; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; font-size: .93rem; }
 .footer__contact li { display: flex; gap: .6rem; align-items: flex-start; margin-bottom: .6rem; font-size: .92rem; }
 .footer__contact svg { width: 18px; height: 18px; color: var(--lime); flex-shrink: 0; margin-top: .15rem; }

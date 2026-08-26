@@ -69,7 +69,7 @@
     var MAP = {
       study:   { title: "International Education Access", href: "services.html#education", blurb: "Programme and destination guidance, applications, scholarships and transition support — with final decisions always resting with institutions and authorities." },
       work:    { title: "Global Mobility & Talent", href: "services.html#mobility", blurb: "Realistic routes, readiness and verified opportunities, with responsible hand-offs to licensed recruitment and mobility partners." },
-      skills:  { title: "GAP — Global Access Program", href: "gap.html", blurb: "Language, employability, vocational, digital-assessment and pre-departure preparation delivered through Ruothy cohorts." },
+      skills:  { title: "GAP — Global Access Programme", href: "gap.html", blurb: "Language, employability, vocational, digital-assessment and pre-departure preparation delivered through Ruothy cohorts." },
       test:    { title: "Assessment & Testing", href: "services.html#assessment", blurb: "Authorised testing, preparation boundaries, scheduling and centre requirements — explained clearly and honestly." },
       partner: { title: "Partner With Ruothy", href: "partners.html", blurb: "Ethical representation, cohort delivery, assessment capacity and workforce pipelines for institutions and employers." }
     };
