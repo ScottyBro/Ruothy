@@ -453,6 +453,9 @@ p { margin: 0 0 1rem; }
 }
 .mock-phone__notch { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 54px; height: 6px; border-radius: 6px; background: rgba(255,255,255,.25); z-index: 2; }
 .mock-phone__screen { background: #fff; border-radius: 23px; overflow: hidden; }
+.mp-urlbar { display: flex; align-items: center; justify-content: center; gap: .35rem; background: #eef3f6; color: var(--grey-500); font-size: .7rem; font-weight: 600; padding: .8rem .6rem .4rem; }
+.mp-urlbar svg { width: 11px; height: 11px; }
+.mp-urlbar span { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .7rem; }
 .mp-head { display: flex; align-items: center; justify-content: space-between; padding: 1rem .8rem .5rem; }
 .mp-head img { height: 15px; }
 .mp-head .bars { display: grid; gap: 3px; }
