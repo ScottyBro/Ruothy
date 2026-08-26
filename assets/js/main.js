@@ -121,21 +121,12 @@
     if (savedGoal && MAP[savedGoal]) { pick("goal", savedGoal, false); if (savedStage) pick("stage", savedStage, false); }
   }
 
-  /* ---- Demo form handling (no backend on the static build) ---- */
-  document.querySelectorAll("form[data-demo]").forEach(function (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      var status = form.querySelector(".form-status");
-      if (status) {
-        status.classList.add("show");
-        status.textContent = "Thank you — your enquiry has been captured. The Ruothy team will respond within two working days. (Demo: connect this form to your CRM/email before launch.)";
-      }
-      form.querySelectorAll("input, select, textarea").forEach(function (el) {
-        if (el.type !== "checkbox") el.value = "";
-      });
-    });
-  });
+  /* ---- Forms ----
+     Forms POST (see method="post" in the markup) so field values are sent in
+     the request body, never the URL — personal details cannot leak into the
+     address bar even if this script fails to run. Native HTML validation
+     enforces required fields without JS. Wire a real endpoint (form `action`
+     to your CRM / Formspree / backend) before launch to collect submissions. */
 
   /* ---- Cookie consent banner ---- */
   (function () {
