@@ -13,3 +13,6 @@ npm-debug.log*
 # Editor
 .idea/
 *.swp
+
+# Local preview server (kept local; must NOT deploy to Vercel as a function)
+server.js
