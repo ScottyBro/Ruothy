@@ -98,16 +98,43 @@
           '<p class="quiz-saved-note" role="status"></p>' +
         '</div>';
       var note = result.querySelector(".quiz-saved-note");
-      function flash(msg) { note.textContent = msg; note.classList.add("show"); }
+      var noteTimer;
+      function flash(msg, kind) {                       // kind: "ok" | "warn"
+        note.textContent = msg;
+        note.className = "quiz-saved-note show " + (kind || "ok");
+        clearTimeout(noteTimer);
+        noteTimer = setTimeout(function () { note.classList.remove("show"); }, 6000);
+      }
+      /* Save — works the same on every platform (localStorage), clear confirmation. */
       result.querySelector("[data-save]").addEventListener("click", function () {
-        try { localStorage.setItem("ruothy_journey", JSON.stringify({ goal: goal, stage: stage, at: Date.now() })); flash("Saved to this device. It’ll be here when you come back."); }
-        catch (e) { flash("Couldn’t save on this device, but you can bookmark the page."); }
+        try {
+          localStorage.setItem("ruothy_journey", JSON.stringify({ goal: goal, stage: stage, at: Date.now() }));
+          flash("✓ Saved on this device — it’ll be here when you come back.", "ok");
+        } catch (e) {
+          flash("Couldn’t save (private browsing?). You can bookmark this page instead.", "warn");
+        }
       });
+      /* Share — native share sheet on Android/iPhone; clipboard copy on desktop;
+         a copy-prompt as a last resort. Every path ends in a clear confirmation. */
       result.querySelector("[data-share]").addEventListener("click", function () {
         var url = shareUrl();
-        if (navigator.share) { navigator.share({ title: "My Ruothy pathway", text: "My recommended Ruothy pathway: " + r.title, url: url }).catch(function () {}); }
-        else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function () { flash("Link copied — share it anywhere."); }, function () { flash(url); }); }
-        else { flash(url); }
+        function copyFallback() {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(
+              function () { flash("✓ Link copied — paste it anywhere to share.", "ok"); },
+              function () { window.prompt("Copy this link to share:", url); }
+            );
+          } else {
+            window.prompt("Copy this link to share:", url);
+          }
+        }
+        if (navigator.share) {
+          navigator.share({ title: "My Ruothy pathway", text: "My recommended Ruothy pathway: " + r.title, url: url })
+            .then(function () { flash("✓ Shared. Thanks for spreading the word!", "ok"); })
+            .catch(function (err) { if (!err || err.name !== "AbortError") copyFallback(); });  // ignore user-cancel
+        } else {
+          copyFallback();
+        }
       });
       if (scroll && !firstRender) result.scrollIntoView({ behavior: "smooth", block: "nearest" });
       firstRender = false;
