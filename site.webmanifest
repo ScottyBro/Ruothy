@@ -1,0 +1,13 @@
+{
+  "name": "Ruothy International",
+  "short_name": "Ruothy",
+  "description": "Connecting learning, talent and global opportunity.",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/img/icon-tile.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#004F84",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
